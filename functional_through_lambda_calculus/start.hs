@@ -7,6 +7,8 @@
 {-# HLINT ignore "Redundant bracket" #-}
 {-# HLINT ignore "Avoid lambda" #-}
 
+identity = \x -> x
+
 selectFirst :: first -> second -> first
 selectFirst = \first -> \second -> first
 
@@ -24,10 +26,14 @@ cond = \e1 -> \e2 -> \c -> ((c e1) e2)
 true = selectFirst
 false = selectSecond
 not_ = \x -> ((x false) true)
-
+and_ = \x -> \y -> ((x y) false)
+or_ = \x -> \y -> ((x true) y)
 toBool = \b -> (b True False)
 
--- sum logic
-_2_ = \f -> \x -> f( f x )
-_3_ = \f -> \x -> f( f( f x ))
 
+-- numbers 
+zero = identity
+succ = \n -> \s -> ((s false) n)
+
+
+--page - 51 -
